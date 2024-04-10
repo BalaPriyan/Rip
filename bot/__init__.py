@@ -70,7 +70,7 @@ sako="qbittorrent-nox"
 semo="ffmpeg"
 jamo="java"
 
-bot_cache['pkgs'] = [memo, moko, sako, semo, james, memo|moko|sako|semo|james]
+bot_cache['pkgs'] = ['{memo}', '{moko}', '{sako}', '{semo}', '{james}', "{memo}|{moko}|{sako}|{semo}|{james}"]
 
 try:
     if bool(environ.get("_____REMOVE_THIS_LINE_____")):
