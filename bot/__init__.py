@@ -69,8 +69,9 @@ moko="aria2c"
 sako="qbittorrent-nox"
 semo="ffmpeg"
 jamo="java"
+zore="gunicorn|aria2c|qbittorrent-nox|ffmpeg|java"
 
-bot_cache['pkgs'] = ['{memo}', '{moko}', '{sako}', '{semo}', '{james}', "{memo}|{moko}|{sako}|{semo}|{james}"]
+bot_cache['pkgs'] = ['{memo}', '{moko}', '{sako}', '{semo}', '{james}', "{zoro}"]
 
 try:
     if bool(environ.get("_____REMOVE_THIS_LINE_____")):
