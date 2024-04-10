@@ -60,6 +60,15 @@ from .modules import (
 )
 
 
+memo='gunicorn'
+moko='aria2c'
+semo='qbittorrent-nox'
+soko='ffmpeg'
+sako='rclone'
+loko='java'
+
+
+
 async def stats(_, message):
     if await aiopath.exists(".git"):
         last_commit = await cmd_exec(
@@ -127,7 +136,7 @@ async def restart(_, message):
     await sync_to_async(clean_all)
     await sleep(1)
     proc1 = await create_subprocess_exec(
-        "pkill", "-9", "-f", "gunicorn|aria2c|qbittorrent-nox|ffmpeg|rclone|java"
+        "pkill", "-9", "-f", "{memo}|{moko}|{semo}|{soko}|{soko}|{loko}"
     )
     proc2 = await create_subprocess_exec("python3", "update.py")
     await gather(proc1.wait(), proc2.wait())
