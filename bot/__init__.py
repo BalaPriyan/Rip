@@ -147,22 +147,6 @@ if DATABASE_URL:
 else:
     config_dict = {}
 
-if not ospath.exists('.netrc'):
-    with open('.netrc', 'w'):
-        pass
-run(["chmod", "600", ".netrc"])
-run(["cp", ".netrc", "/root/.netrc"])
-trackers = check_output("curl -Ns https://raw.githubusercontent.com/XIU2/TrackersListCollection/master/all.txt https://ngosang.github.io/trackerslist/trackers_all_http.txt https://newtrackon.com/api/all https://raw.githubusercontent.com/hezhijie0327/Trackerslist/main/trackerslist_tracker.txt | awk '$0' | tr '\n\n' ','", shell=True).decode('utf-8').rstrip(',')
-with open("a2c.conf", "a+") as a:
-    if TORRENT_TIMEOUT is not None:
-        a.write(f"bt-stop-timeout={TORRENT_TIMEOUT}\n")
-    a.write(f"bt-tracker=[{trackers}]")
-run([moko, "--conf-path=/usr/src/app/a2c.conf"])
-alive = Popen(["python3", "alive.py"])
-sleep(0.5)
-
-
-
 
 
 
@@ -464,6 +448,23 @@ if ospath.exists("list_drives.txt"):
                 INDEX_URLS.append(temp[2])
             else:
                 INDEX_URLS.append("")
+
+
+if not ospath.exists('.netrc'):
+    with open('.netrc', 'w'):
+        pass
+run(["chmod", "600", ".netrc"])
+run(["cp", ".netrc", "/root/.netrc"])
+trackers = check_output("curl -Ns https://raw.githubusercontent.com/XIU2/TrackersListCollection/master/all.txt https://ngosang.github.io/trackerslist/trackers_all_http.txt https://newtrackon.com/api/all https://raw.githubusercontent.com/hezhijie0327/Trackerslist/main/trackerslist_tracker.txt | awk '$0' | tr '\n\n' ','", shell=True).decode('utf-8').rstrip(',')
+with open("a2c.conf", "a+") as a:
+    if TORRENT_TIMEOUT is not None:
+        a.write(f"bt-stop-timeout={TORRENT_TIMEOUT}\n")
+    a.write(f"bt-tracker=[{trackers}]")
+run([moko, "--conf-path=/usr/src/app/a2c.conf"])
+alive = Popen(["python3", "alive.py"])
+sleep(0.5)
+
+
 
 PORT = environ.get('PORT')
 Popen(f"gunicorn web.wserver:app --bind 0.0.0.0:{PORT} --worker-class gevent", shell=True)
