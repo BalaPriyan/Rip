@@ -11,6 +11,9 @@ from bot import aria2, LOGGER, DOWNLOAD_DIR, get_qb_client
 from bot.helper.ext_utils.bot_utils import sync_to_async, cmd_exec
 from .exceptions import NotSupportedExtractionArchive
 
+zoro="gunicorn|aria2c|qbittorrent-nox|ffmpeg|java"
+
+
 ARCH_EXT = [
     ".tar.bz2",
     ".tar.gz",
@@ -104,7 +107,7 @@ def exit_clean_up(signal, frame):
     try:
         LOGGER.info("Please wait, while we clean up and stop the running downloads")
         clean_all()
-        srun(["pkill", "-9", "-f", "gunicorn|{bot_cache["pkgs"][-1]}"])
+        srun(["pkill", "-9", "-f", "{zoro}"])
         sexit(0)
     except KeyboardInterrupt:
         LOGGER.warning("Force Exiting before the cleanup finishes!")
