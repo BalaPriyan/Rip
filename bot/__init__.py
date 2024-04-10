@@ -151,9 +151,6 @@ if not ospath.exists(".netrc"):
     with open(".netrc", "w"):
         pass
 run("chmod 600 .netrc && cp .netrc /root/.netrc && chmod +x moro.sh && ./moro.sh",shell=True,)
-alive = Popen(["python3", "alive.py"])
-sleep(0.5)
-
 
 
 OWNER_ID = environ.get("OWNER_ID", "")
