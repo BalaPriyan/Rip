@@ -519,9 +519,9 @@ bot_loop = bot.loop
 bot_name = bot.me.username
 
 scheduler = AsyncIOScheduler(timezone=str(get_localzone()), event_loop=bot_loop)
-
+get_qb_client = get_qb_client()
 if not qbit_options:
-    qbit_options = dict(get_qb_client().app_preferences())
+    qbit_options = dict(get_qb_client.app_preferences())
     del qbit_options["listen_port"]
     for k in list(qbit_options.keys()):
         if k.startswith("rss"):
@@ -531,7 +531,7 @@ else:
     for k, v in list(qb_opt.items()):
         if v in ["", "*"]:
             del qb_opt[k]
-    get_qb_client().app_set_preferences(qb_opt)
+    get_qb_client.app_set_preferences(qb_opt)
 
 aria2 = ariaAPI(ariaClient(host="http://localhost", port=6800, secret=""))
 if not aria2_options:
