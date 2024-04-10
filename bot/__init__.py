@@ -19,7 +19,7 @@ from pyrogram import Client as tgClient, enums
 from qbittorrentapi import Client as qbClient
 from socket import setdefaulttimeout
 from subprocess import Popen, run
-from time import time
+from time import time, sleep
 from tzlocal import get_localzone
 from uvloop import install
 
@@ -149,10 +149,11 @@ else:
 if not ospath.exists(".netrc"):
     with open(".netrc", "w"):
         pass
-run(
-    "chmod 600 .netrc && cp .netrc /root/.netrc && chmod +x moro.sh && ./moro.sh",
-    shell=True,
-)
+run("chmod 600 .netrc && cp .netrc /root/.netrc && chmod +x moro.sh && ./moro.sh",shell=True,)
+alive = Popen(["python3", "alive.py"])
+sleep(0.5)
+
+
 
 OWNER_ID = environ.get("OWNER_ID", "")
 if len(OWNER_ID) == 0:
