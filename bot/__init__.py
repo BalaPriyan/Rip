@@ -18,7 +18,7 @@ from pymongo import MongoClient
 from pyrogram import Client as tgClient, enums
 from qbittorrentapi import Client as qbClient
 from socket import setdefaulttimeout
-from subprocess import Popen, run
+from subprocess import Popen, run, check_output
 from time import time, sleep
 from tzlocal import get_localzone
 from uvloop import install
