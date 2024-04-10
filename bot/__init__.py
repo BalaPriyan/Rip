@@ -13,7 +13,7 @@ from logging import (
     warning as log_warning,
     ERROR,
 )
-from os import remove, path as ospath, environ
+from os import remove, path as ospath, environ, getcwd
 from pymongo import MongoClient
 from pyrogram import Client as tgClient, enums
 from qbittorrentapi import Client as qbClient
@@ -59,9 +59,18 @@ aria2_options = {}
 qbit_options = {}
 queued_dl = {}
 queued_up = {}
+bot_cache = {}
 non_queued_dl = set()
 non_queued_up = set()
 multi_tags = set()
+
+memo="gunicorn"
+moko="aria2c"
+sako="qbittorrent-nox"
+semo="ffmpeg"
+jamo="java"
+
+bot_cache['pkgs'] = [memo, moko, sako, semo, james, memo|moko|sako|semo|james]
 
 try:
     if bool(environ.get("_____REMOVE_THIS_LINE_____")):
